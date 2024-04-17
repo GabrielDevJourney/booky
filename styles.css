@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Baloo 2', sans-serif, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+:root{
+    /* *Colors variables light-mode*/
+    --navBar-cardsShadow- : hsl(210,50%,80%);
+    --btnLogin-addBook-modalSubmit- : hsl(120,50%,80%);
+    --txtColor-EditBtnBcg- : hsl(0,0%,30%);
+    --deleteBtnBgc- : hsl(0,85%,68%);
+    --pageBgc- : hsl(45,80%,95%);
+    --box-shadow-color- : hsl(0 0% 30% / .6)
+}
+
+body{
+    background-color: var(--pageBgc-);
+}
+
+.nav-bar{
+    width: 100%;
+    background-color: var(--navBar-cardsShadow-);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0 0 1rem 1rem ;
+    -webkit-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
+    -moz-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
+    box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
+}
+
+.logo-container, .login-container{
+    padding: 0.5rem;
+}
+.logo-name{
+    color: white;
+    font-size: 4rem;
+}
+.btn-login{
+    width: 9rem;
+    background-color: var(--btnLogin-addBook-modalSubmit-);
+    border: none;
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 1rem;
+    text-align: center;
+    color: var(--txtColor-EditBtnBcg-);
+    cursor: pointer;
+}
