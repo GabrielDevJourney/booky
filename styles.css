@@ -12,7 +12,7 @@
     --btnLogin-addBook-modalSubmit- : hsl(120,50%,80%);
     --txtColor-EditBtnBcg- : hsl(0,0%,30%);
     --deleteBtnBgc- : hsl(0,85%,68%);
-    --pageBgc- : hsl(45,80%,95%);
+    --pageBgc- : hsl(45,85%,95%);
     --box-shadow-color- : hsl(0 0% 30% / .6)
 }
 
@@ -20,6 +20,7 @@ body{
     background-color: var(--pageBgc-);
 }
 
+/* *NAV BAR STYLING*/
 .nav-bar{
     width: 100%;
     background-color: var(--navBar-cardsShadow-);
@@ -27,11 +28,11 @@ body{
     align-items: center;
     justify-content: space-around;
     border-radius: 0 0 1rem 1rem ;
+    /* THIS IS TO GIVE IT SHADOWS*/
     -webkit-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
     -moz-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
     box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
 }
-
 .logo-container, .login-container{
     padding: 0.5rem;
 }
@@ -49,4 +50,46 @@ body{
     text-align: center;
     color: var(--txtColor-EditBtnBcg-);
     cursor: pointer;
+}
+
+.library-container{
+    border: 1px solid black;
+    height: 80vh;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(auto, 1fr));
+    grid-template-rows: 8rem auto 8rem;
+    grid-template-areas: 
+        '. . btn . .'
+        'card card card card card'
+        '. . stats . .'
+    ;
+    gap: 1rem;
+}
+.add-book-container{
+    border: 1px solid black;
+    margin-top: 1rem;
+    display: flex;
+}
+.btn-add-book{
+    grid-area: btn;
+    height: 6rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    background-color: var(--btnLogin-addBook-modalSubmit-);
+    color: var(--txtColor-EditBtnBcg-);
+}
+.cards-container{
+    grid-area: card;
+    border: 1px solid black;
+    margin: 0 1rem;
+}
+.stats-container{
+    grid-area: stats;
+    border: 1px solid black;
+    margin-bottom: 1rem;
 }
