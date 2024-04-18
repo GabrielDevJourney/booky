@@ -52,28 +52,28 @@ body{
     cursor: pointer;
 }
 
+/* *MAIN CONTAINER */
 .library-container{
     border: 1px solid black;
     height: 80vh;
     margin: 1rem;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(auto, 1fr));
-    grid-template-rows: 8rem auto 8rem;
-    grid-template-areas: 
-        '. . btn . .'
-        'card card card card card'
-        '. . stats . .'
-    ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 }
 
+/* * +ADD BOOK CONTAINER */
 .add-book-container{
     border: 1px solid black;
     margin-top: 1rem;
     display: flex;
 }
+
+/* *BTN +ADD BOOK */
 .btn-add-book{
-    grid-area: btn;
+    width: 300px;
     height: 6rem;
     cursor: pointer;
     margin: 1rem;
@@ -85,14 +85,18 @@ body{
     color: var(--txtColor-EditBtnBcg-);
 }
 
+/* *BOOKS CARDS CONTAINER */
 .cards-container{
-    grid-area: card;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row wrap;
     border: 1px solid black;
-    margin: 0 1rem;
 }
 
+/* *ICONS WITH NUMBERS STATS CONTAINER */
 .stats-container{
-    grid-area: stats;
+    position: sticky;
     width: 500px;
     border: 1px solid black;
     margin: 1rem;
@@ -106,12 +110,46 @@ body{
     -moz-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
     box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
 }
-.icons-num-containers{
+
+/* *EACH STAT CONTAINER */
+.icons-numbers-containers{
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
-.icons-num-containers > p{
+.icons-numbers-containers > p{
     color: var(--txtColor-EditBtnBcg-);
     font-weight: 500;
+}
+
+/* *SINGLE BOOK CARD STYLING */
+.card{
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 1rem;
+    width: 250px;
+    height: 210px;
+    background-color: white;
+    border-radius: 2rem;
+    color: var(--txtColor-EditBtnBcg-);
+    display: flex;
+    flex-direction: column;
+}
+.card-header{
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+.card-author{
+    padding-top: 0.5rem;
+}
+.card-author, .card-pages{
+    font-weight: 500;
+}
+.read-or-nonread-icons-container{
+    align-self: flex-end;
+    height: 64px;
+    margin-right: -1rem;
+}
+.card-icon{
+    margin: auto;
 }
