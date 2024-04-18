@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<script
+			src="https://kit.fontawesome.com/b454cf0edf.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>booky</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/b454cf0edf.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
-    <title>booky</title>
-</head>
+	<body>
+		<div class="wrapper">
+			<div class="nav-bar">
+				<div class="logo-container">
+					<h1 class="logo-name">booky</h1>
+				</div>
+				<div class="login-container">
+					<button class="btn-login">Login</button>
+				</div>
+			</div>
 
-<body>
-    <div class="wrapper">
-
-        <div class="nav-bar">
-            <div class="logo-container">
-                <h1 class="logo-name">booky</h1>
-            </div>
-            <div class="login-container">
-                <button class="btn-login">Login</button>
-            </div>
-        </div>
-
-        <div class="library-container">
-                <button class="btn-add-book">+ Add Book</button>
-            <div class="cards-container"></div>
-            <div class="stats-container"></div>
-        </div>
-    </div>
-</body>
-
+			<div class="library-container">
+				<button class="btn-add-book">+ Add Book</button>
+				<div class="cards-container"></div>
+				<div class="stats-container">
+					<div class="icons-num-containers">
+						<img
+							src="assets/bookstack-stats.png"
+							alt="a stack of books"
+						/>
+                        <p class="stack-count">123</p>
+					</div>
+					<div class="icons-num-containers">
+						<img
+							src="assets/pages stats.png"
+							alt="book open representing pages folding"
+						/>
+                        <p class="pages-count">123</p>
+					</div>
+					<div class="icons-num-containers">
+						<img
+							src="assets/readcheck stats.png"
+							alt="right check"
+						/>
+                        <p class="read-count">123</p>
+					</div>
+					<div class="icons-num-containers">
+						<img
+							src="assets/cancel stats.png"
+							alt="close error icon"
+						/>
+                        <p class="non-read-count">123</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

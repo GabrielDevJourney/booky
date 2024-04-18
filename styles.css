@@ -66,6 +66,7 @@ body{
     ;
     gap: 1rem;
 }
+
 .add-book-container{
     border: 1px solid black;
     margin-top: 1rem;
@@ -75,7 +76,7 @@ body{
     grid-area: btn;
     height: 6rem;
     cursor: pointer;
-    margin-top: 1rem;
+    margin: 1rem;
     border: none;
     border-radius: 2rem;
     font-size: 2.5rem;
@@ -83,13 +84,34 @@ body{
     background-color: var(--btnLogin-addBook-modalSubmit-);
     color: var(--txtColor-EditBtnBcg-);
 }
+
 .cards-container{
     grid-area: card;
     border: 1px solid black;
     margin: 0 1rem;
 }
+
 .stats-container{
     grid-area: stats;
+    width: 500px;
     border: 1px solid black;
-    margin-bottom: 1rem;
+    margin: 1rem;
+    background-color: white;
+    border: none;
+    border-radius: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    -webkit-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
+    -moz-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
+    box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
+}
+.icons-num-containers{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.icons-num-containers > p{
+    color: var(--txtColor-EditBtnBcg-);
+    font-weight: 500;
 }
