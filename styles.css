@@ -1,155 +1,276 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Baloo 2', sans-serif, Arial, Helvetica, sans-serif;
-    font-size: 16px;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Baloo 2", sans-serif, Arial, Helvetica, sans-serif;
+	font-size: 16px;
 }
 
-:root{
-    /* *Colors variables light-mode*/
-    --navBar-cardsShadow- : hsl(210,50%,80%);
-    --btnLogin-addBook-modalSubmit- : hsl(120,50%,80%);
-    --txtColor-EditBtnBcg- : hsl(0,0%,30%);
-    --deleteBtnBgc- : hsl(0,85%,68%);
-    --pageBgc- : hsl(45,85%,95%);
-    --box-shadow-color- : hsl(0 0% 30% / .6)
+:root {
+	/* *Colors variables light-mode*/
+	--navBar-cardsShadow-: hsl(210, 50%, 80%);
+	--btnLogin-addBook-modalSubmit-: hsl(120, 50%, 80%);
+	--txtColor-EditBtnBcg-: hsl(0, 0%, 30%);
+	--deleteBtnBgc-: hsl(0, 85%, 68%);
+	--pageBgc-: hsl(45, 85%, 95%);
+	--box-shadow-color-: hsl(0 0% 30% / 0.6);
 }
 
-body{
-    background-color: var(--pageBgc-);
+body {
+	background-color: var(--pageBgc-);
 }
 
 /* *NAV BAR STYLING*/
-.nav-bar{
-    width: 100%;
-    background-color: var(--navBar-cardsShadow-);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 0 0 1rem 1rem ;
-    /* THIS IS TO GIVE IT SHADOWS*/
-    -webkit-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
-    -moz-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
-    box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
+.nav-bar {
+	width: 100%;
+	background-color: var(--navBar-cardsShadow-);
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 0 0 1rem 1rem;
+	/* THIS IS TO GIVE IT SHADOWS*/
+	-webkit-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
+	-moz-box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
+	box-shadow: 0px 8px 4px 2px var(--box-shadow-color-);
 }
-.logo-container, .login-container{
-    padding: 0.5rem;
+.logo-container,
+.login-container {
+	padding: 0.5rem;
 }
-.logo-name{
-    color: white;
-    font-size: 4rem;
+.logo-name {
+	color: white;
+	font-size: 4rem;
 }
-.btn-login{
-    width: 9rem;
-    background-color: var(--btnLogin-addBook-modalSubmit-);
-    border: none;
-    font-size: 2rem;
-    font-weight: 500;
-    border-radius: 1rem;
-    text-align: center;
-    color: var(--txtColor-EditBtnBcg-);
-    cursor: pointer;
+.btn-login {
+	width: 9rem;
+	background-color: var(--btnLogin-addBook-modalSubmit-);
+	border: none;
+	font-size: 2rem;
+	font-weight: 500;
+	border-radius: 1rem;
+	text-align: center;
+	color: var(--txtColor-EditBtnBcg-);
+	cursor: pointer;
 }
 
 /* *MAIN CONTAINER */
-.library-container{
-    border: 1px solid black;
-    height: 80vh;
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+.library-container {
+	height: 80vh;
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
 }
 
 /* * +ADD BOOK CONTAINER */
-.add-book-container{
-    border: 1px solid black;
-    margin-top: 1rem;
-    display: flex;
+.add-book-container {
+	margin-top: 1rem;
+	display: flex;
 }
 
 /* *BTN +ADD BOOK */
-.btn-add-book{
-    width: 300px;
-    height: 6rem;
-    cursor: pointer;
-    margin: 1rem;
-    border: none;
-    border-radius: 2rem;
-    font-size: 2.5rem;
-    font-weight: 600;
-    background-color: var(--btnLogin-addBook-modalSubmit-);
-    color: var(--txtColor-EditBtnBcg-);
+.btn-add-book {
+	width: 300px;
+	height: 6rem;
+	cursor: pointer;
+	margin: 1rem;
+	border: none;
+	border-radius: 2rem;
+	font-size: 2.5rem;
+	font-weight: 600;
+	background-color: var(--btnLogin-addBook-modalSubmit-);
+	color: var(--txtColor-EditBtnBcg-);
 }
 
 /* *BOOKS CARDS CONTAINER */
-.cards-container{
-    width: 100%;
-    flex-grow: 1;
-    display: flex;
-    flex-flow: row wrap;
-    border: 1px solid black;
+.cards-container {
+	width: 100%;
+	flex-grow: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
 }
 
 /* *ICONS WITH NUMBERS STATS CONTAINER */
-.stats-container{
-    position: sticky;
-    width: 500px;
-    border: 1px solid black;
-    margin: 1rem;
-    background-color: white;
-    border: none;
-    border-radius: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    -webkit-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
-    -moz-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
-    box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
+.stats-container {
+	position: sticky;
+	width: 500px;
+	margin: 1rem;
+	background-color: white;
+	border: none;
+	border-radius: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	-webkit-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
+	-moz-box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
+	box-shadow: 2px 8px 8px 2px var(--box-shadow-color-);
 }
 
 /* *EACH STAT CONTAINER */
-.icons-numbers-containers{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.icons-numbers-containers {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
-.icons-numbers-containers > p{
-    color: var(--txtColor-EditBtnBcg-);
-    font-weight: 500;
+.icons-numbers-containers > p {
+	color: var(--txtColor-EditBtnBcg-);
+	font-weight: 500;
 }
 
 /* *SINGLE BOOK CARD STYLING */
-.card{
-    border: 1px solid black;
-    margin: 1rem;
-    padding: 1rem;
-    width: 250px;
-    height: 210px;
-    background-color: white;
-    border-radius: 2rem;
-    color: var(--txtColor-EditBtnBcg-);
+.card {
+	border: 2px solid var(--navBar-cardsShadow-);
+	margin: 1rem;
+	padding: 1rem;
+	width: 250px;
+	height: 210px;
+	background-color: white;
+	border-radius: 2rem;
+	color: var(--txtColor-EditBtnBcg-);
+	display: flex;
+	flex-direction: column;
+	-webkit-box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+	-moz-box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+	box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+}
+.card-header {
+	padding-top: 1rem;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+}
+.card-author {
+	padding-top: 0.5rem;
+}
+.card-author,
+.card-pages {
+	font-weight: 500;
+}
+.read-or-nonread-icons-container {
+	align-self: flex-end;
+	height: 64px;
+	margin-right: -1rem;
+}
+.card-icon {
+	margin: auto;
+}
+.footer-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.footer-text {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--txtColor-EditBtnBcg-);
+	padding-right: 0.5rem;
+}
+
+/* *MODAL THAT TAKE THE NEW BOOK DATA */
+.form-book {
+	border: 2px solid var(--navBar-cardsShadow-);
+	display: flex;
+	flex-direction: column;
+	margin: 1rem;
+	width: 300px;
+	height: 350px;
+	border-radius: 2rem;
+	-webkit-box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+	-moz-box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+	box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+}
+.form-header {
+	padding: 0.5rem 0rem;
+	font-size: 2rem;
+	font-weight: 600;
+	text-align: center;
+	color: var(--txtColor-EditBtnBcg-);
+}
+.text-box {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.text-box > input {
+	margin: 0 1rem;
+	height: 2.5rem;
+	font-weight: 500;
+	padding-left: 0.5rem;
+	border: none;
+	border-radius: 1rem;
+	-webkit-box-shadow: 2px 4px 4px 2px var(--box-shadow-color-);
+	-moz-box-shadow: 2px 4px 4px 2px var(--box-shadow-color-);
+	box-shadow: 2px 4px 4px 2px var(--box-shadow-color-);
+}
+
+.read-check-box{
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
 }
-.card-header{
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-}
-.card-author{
-    padding-top: 0.5rem;
-}
-.card-author, .card-pages{
+.read-check-text{
+    color: var(--txtColor-EditBtnBcg-);
     font-weight: 500;
+    padding-left: 0.5rem;
 }
-.read-or-nonread-icons-container{
-    align-self: flex-end;
-    height: 64px;
-    margin-right: -1rem;
+.btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }
-.card-icon{
-    margin: auto;
+.submit-btn{
+    width: 80%;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--btnLogin-addBook-modalSubmit-);
+    color: var(--txtColor-EditBtnBcg-);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.checkbox-container {
+	--input-focus: hsl(120, 50%, 80%);
+	--input-out-of-focus: hsl(45, 85%, 95%);
+	--bg-color: #fff;
+	--main-color: hsl(210, 50%, 80%);
+	position: relative;
+	cursor: pointer;
+    padding-right: 0.5rem;
+}
+.checkbox-container input {
+	position: absolute;
+	opacity: 0;
+}
+.checkmark {
+	width: 1.5rem;
+	height: 1.5rem;
+	position: relative;
+	top: 0;
+	left: 0;
+	border: 2px solid var(--main-color);
+	border-radius: 5px;
+	box-shadow: 4px 4px var(--main-color);
+	background-color: var(--input-out-of-focus);
+	transition: all 0.3s;
+}
+.checkbox-container input:checked ~ .checkmark {
+	background-color: var(--input-focus);
+}
+.checkmark:after {
+	content: "";
+	width: 4px;
+	height: 12px;
+	position: absolute;
+	top: 1px;
+	left: 7px;
+	display: none;
+	border: solid var(--bg-color);
+	border-width: 0 2.5px 2.5px 0;
+	transform: rotate(45deg);
+}
+.checkbox-container input:checked ~ .checkmark:after {
+	display: block;
 }
