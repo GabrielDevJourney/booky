@@ -97,9 +97,13 @@
                 </a>
 			</div>
             <!-- Modal for creating new book -->
-            <div class="form-book" style="display: none;">
+            <div class="form-book" >
                 <form autocomplete="off">
-                    <header class="form-header">Add new book</header>
+                    <div class="form-header">
+                        Add new book
+                        <button class="close-book-form">
+                            <img src="assets/icon-close-form.png" alt="">
+                        </button> </div>
 
                     <div class="text-box">
                         <input type="text" placeholder="Title" id="title">
@@ -118,5 +122,7 @@
                 </form>
             </div>
 		</footer>
+
+        <script src="script.js"></script>
 	</body>
 </html>

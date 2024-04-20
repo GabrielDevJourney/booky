@@ -182,11 +182,20 @@ body {
 	box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
 }
 .form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 	padding: 0.5rem 0rem;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	font-weight: 600;
 	text-align: center;
 	color: var(--txtColor-EditBtnBcg-);
+}
+.close-book-form{
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
 }
 .text-box {
 	display: flex;
