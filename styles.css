@@ -124,7 +124,6 @@ body {
 .card {
 	border: 2px solid var(--navBar-cardsShadow-);
 	margin: 1rem;
-	padding: 1rem;
 	width: 250px;
 	height: 210px;
 	background-color: white;
@@ -135,6 +134,7 @@ body {
 	-webkit-box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
 	-moz-box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
 	box-shadow: 8px 8px 0px 2px var(--navBar-cardsShadow-);
+    cursor: default;
 }
 .card-header {
 	padding-top: 1rem;
@@ -149,13 +149,53 @@ body {
 	font-weight: 500;
 }
 .read-or-nonread-icons-container {
-	align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
 	height: 64px;
-	margin-right: -1rem;
+    margin-right: -1rem;
 }
-.card-icon {
-	margin: auto;
+.card-info-enable{
+    padding: 1rem;
 }
+
+/* *CARD WHEN HOVER */
+
+/* bluring the card when appear the options to delete and edit */
+@keyframes blurcard{
+    100% {filter: blur(2px) opacity(80%);}
+}
+.card-when-hover{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 246px;
+    height: 208px;
+    text-align: center;
+    transition: all .2s ease-in-out;
+}
+.edit-btn-hover,.delete-btn-hover{
+    border: none;
+    border-radius: 1rem;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+}
+.edit-btn-hover{
+    background-color: var(--txtColor-EditBtnBcg-);
+    margin-right: 1rem;
+}
+.delete-btn-hover{
+    background-color: var(--deleteBtnBgc-);
+}
+.card-info-enable:hover{
+    animation-name: blurcard;
+    animation-fill-mode: forwards;
+    animation-duration: 300ms
+}
+
+
+/* *FOOTER */
 .footer-container {
 	display: flex;
 	align-items: center;
