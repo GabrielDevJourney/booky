@@ -50,15 +50,18 @@
 									style="display: none"
 								/>
 							</div>
-                        </div>
-                            <div class="card-when-hover" >
-                                <button class="edit-btn-hover">
-                                    <img src="assets/edit hover card.png" alt="">
-                                </button>
-                                <button class="delete-btn-hover">
-                                    <img src="assets/icon delete hover effect cards.png" alt="">
-                                </button>
-                            </div>
+						</div>
+						<div class="card-when-hover" style="display: none">
+							<button class="edit-btn-hover">
+								<img src="assets/edit hover card.png" alt="" />
+							</button>
+							<button class="delete-btn-hover">
+								<img
+									src="assets/icon delete hover effect cards.png"
+									alt=""
+								/>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -106,37 +109,49 @@
 				</a>
 			</div>
 			<!-- Modal for creating new book -->
-			<div class="form-book">
-				<form autocomplete="off">
-					<div class="form-header">
-						Add new book
-						<button class="close-book-form">
-							<img src="assets/icon-close-form.png" alt="" />
-						</button>
-					</div>
+			<div class="form-wrapper">
+				<div class="form-book">
+					<form autocomplete="off">
+						<div class="form-header">
+							Add new book
+							<button class="close-book-form">
+								<img src="assets/icon-close-form.png" alt="" />
+							</button>
+						</div>
 
-					<div class="text-box">
-						<input type="text" placeholder="Title" id="title" />
-						<input type="text" placeholder="Author" id="author" />
-						<input type="number" placeholder="Pages" id="pages" />
-					</div>
+						<div class="text-box">
+							<input type="text" placeholder="Title" id="title" />
+							<input
+								type="text"
+								placeholder="Author"
+								id="author"
+							/>
+							<input
+								type="number"
+								placeholder="Pages"
+								id="pages"
+							/>
+						</div>
 
-					<div class="read-check-box">
-						<span class="read-check-text">Have your read it?</span>
-						<label class="checkbox-container">
-							<input type="checkbox" checked="checked" />
-							<div class="checkmark"></div>
-						</label>
-					</div>
-					<div class="btn-container">
-						<input
-							type="button"
-							id="submit-book-info"
-							value="Add to Library"
-							class="submit-btn"
-						/>
-					</div>
-				</form>
+						<div class="read-check-box">
+							<span class="read-check-text"
+								>Have your read it?</span
+							>
+							<label class="checkbox-container">
+								<input type="checkbox" checked="checked" />
+								<div class="checkmark"></div>
+							</label>
+						</div>
+						<div class="btn-container">
+							<input
+								type="button"
+								id="submit-book-info"
+								value="Add to Library"
+								class="submit-btn"
+							/>
+						</div>
+					</form>
+				</div>
 			</div>
 		</footer>
 
