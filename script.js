@@ -1,3 +1,10 @@
+//*Getting data from the Add Book From
+const title = document.getElementById('tile')
+const author = document.getElementById('author')
+const pagesNumber = document.getElementById('pages')
+const readOrNot = document.getElementById('readornot')
+const submitBookInfo = document.getElementById('submit-book-info')
+
 //*Data structures
 class Book {
 	constructor(
