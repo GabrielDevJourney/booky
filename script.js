@@ -1,19 +1,27 @@
-//*Getting data from the Add Book From
-const modalNewBookInfo = document.getElementsByClassName('form-wrapper')
+//Getting data from the Add Book From
+const modalNewBookInfo = document.querySelector('.form-wrapper')
+const btnCloseModal = document.querySelector('.close-book-form')
 const title = document.getElementById('tile')
 const author = document.getElementById('author')
 const pagesNumber = document.getElementById('pages')
 const readOrNot = document.getElementById('readornot')
 const submitBookInfo = document.getElementById('submit-book-info')
 
-//*MAKE THE ADD BOOK BTN OPEN MODAL
-const btnAddBook = document.querySelector('.btn-add-book')
+//GETTING THE PAGE WRAPPER
+const wrapper = document.querySelector('.wrapper')
 
+//MAKE THE ADD BOOK BTN OPEN MODAL
+const btnAddBook = document.querySelector('.btn-add-book')
 btnAddBook.addEventListener('click', () => {
-    modalNewBookInfo.style.display = 'block';
-    
+    modalNewBookInfo.style.display = 'block'
+    wrapper.classList.add('blur-bcg')
 })
 
+//Modal close btn fucntions
+btnCloseModal.addEventListener('click', () => {
+    modalNewBookInfo.style.display = "none"
+    wrapper.classList.remove("blur-background")
+})
 
 
 

@@ -209,6 +209,9 @@ body {
 /* *MODAL THAT TAKE THE NEW BOOK DATA */
 .form-wrapper{
     display: none;
+    position: absolute;
+    top: 35%;
+    left: 40%;
 }
 .form-book {
 	border: 2px solid var(--navBar-cardsShadow-);
@@ -323,4 +326,12 @@ body {
 }
 .checkbox-container input:checked ~ .checkmark:after {
 	display: block;
+}
+
+/* ! things for js usage */
+@keyframes blur-background{
+    100% {filter: blur(3px) opacity(85%);}
+}
+.blur-bcg{
+    animation: blur-background 0.5s forwards;
 }
