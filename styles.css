@@ -210,8 +210,8 @@ body {
 .form-wrapper{
     display: none;
     position: absolute;
-    top: 35%;
-    left: 40%;
+    top: 30%;
+    left: 41%;
 }
 .form-book {
 	border: 2px solid var(--navBar-cardsShadow-);
@@ -267,6 +267,7 @@ body {
 .read-check-text{
     color: var(--txtColor-EditBtnBcg-);
     font-weight: 500;
+    font-size: 1.3rem;
     padding-left: 0.5rem;
 }
 .btn-container{
