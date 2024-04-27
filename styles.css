@@ -240,6 +240,7 @@ body {
     background-color: transparent;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 .text-box {
 	display: flex;
@@ -270,7 +271,7 @@ body {
     font-size: 1.3rem;
     padding-left: 0.5rem;
 }
-.btn-container{
+.submit-container{
     display: flex;
     justify-content: center;
     margin-top: 1rem;
@@ -284,6 +285,7 @@ body {
     color: var(--txtColor-EditBtnBcg-);
     font-size: 1.5rem;
     font-weight: 600;
+    cursor: pointer;
 }
 .checkbox-container {
 	--input-focus: hsl(120, 50%, 80%);
