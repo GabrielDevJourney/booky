@@ -1,9 +1,21 @@
 //*Getting data from the Add Book From
+const modalNewBookInfo = document.getElementsByClassName('form-wrapper')
 const title = document.getElementById('tile')
 const author = document.getElementById('author')
 const pagesNumber = document.getElementById('pages')
 const readOrNot = document.getElementById('readornot')
 const submitBookInfo = document.getElementById('submit-book-info')
+
+//*MAKE THE ADD BOOK BTN OPEN MODAL
+const btnAddBook = document.querySelector('.btn-add-book')
+
+btnAddBook.addEventListener('click', () => {
+    modalNewBookInfo.style.display = 'block';
+    
+})
+
+
+
 
 //*Data structures
 class Book {
