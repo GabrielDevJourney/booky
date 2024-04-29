@@ -32,38 +32,6 @@
 				<button class="btn-add-book">+ Add Book</button>
 
 				<div class="cards-container">
-					<div class="card">
-						<div class="card-info-enable">
-							<h2 class="card-header"></h2>
-							<p class="card-author"></p>
-							<p class="card-pages"></p>
-							<div class="read-or-nonread-icons-container">
-								<img
-									class="card-icon"
-									src="assets/readcheck stats.png"
-									alt=""
-									style="display: none"
-								/>
-								<img
-									class="card-icon"
-									src="assets/cancel stats.png"
-									alt=""
-									style="display: none"
-								/>
-							</div>
-						</div>
-						<div class="card-when-hover" style="display: none">
-							<button class="edit-btn-hover">
-								<img src="assets/edit hover card.png" alt="" />
-							</button>
-							<button class="delete-btn-hover">
-								<img
-									src="assets/icon delete hover effect cards.png"
-									alt=""
-								/>
-							</button>
-						</div>
-					</div>
 				</div>
 
 				<div class="stats-container">
@@ -112,26 +80,28 @@
 
 
         <!-- Modal for creating new book -->
-        <div class="form-wrapper">
+        <div class="form-wrapper" id="wrapper">
             <div class="form-book">
                 <form autocomplete="off">
                     <div class="form-header">
                         Add new book
-                        <button class="close-book-form">
+                        <button class="close-book-form" id="close-modal-btn">
                             <img src="assets/icon-close-form.png" alt="" />
                         </button>
                     </div>
 
                     <div class="text-box">
-                        <input type="text" placeholder="Title" id="title" />
+                        <input type="text" placeholder="Title" id="title" class="title" />
                         <input
                             type="text"
                             placeholder="Author"
+                            class="author"
                             id="author"
                         />
                         <input
                             type="number"
                             placeholder="Pages"
+                            class="pages"
                             id="pages"
                         />
                     </div>
@@ -143,6 +113,7 @@
                         <label class="checkbox-container">
                             <input
                                 type="checkbox"
+                                class="readornot"
                                 id="readornot"
                             />
                             <div class="checkmark"></div>
@@ -151,9 +122,9 @@
                     <div class="submit-container">
                         <input
                             type="button"
-                            id="submit-book-info"
                             value="Add to Library"
                             class="submit-btn"
+                            id="submit-btn"
                         />
                     </div>
                 </form>

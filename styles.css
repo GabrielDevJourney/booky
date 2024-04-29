@@ -90,7 +90,6 @@ body {
 	flex-grow: 1;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
 }
 
 /* *ICONS WITH NUMBERS STATS CONTAINER */
@@ -152,8 +151,9 @@ body {
     display: flex;
     justify-content: flex-end;
 	height: 64px;
-    margin-right: -1rem;
+    margin-top: 0.5rem;
 }
+
 .card-info-enable{
     padding: 1rem;
 }
