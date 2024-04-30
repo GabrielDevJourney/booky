@@ -176,6 +176,7 @@ function createHoverBtns(book){
     editBtn.addEventListener("click", () => {
 
 	openModal();
+    btnSubmitBook.textContent = 'Edit Book'
 
 	// FILL INPUT FIELDS WITH BOOK INFORMATION
 	titleInput.value = book.title;
