@@ -11,10 +11,12 @@ const wrapper = document.querySelector(".wrapper");
 
 //MAKE THE ADD BOOK BTN OPEN MODAL
 const btnAddBook = document.querySelector(".btn-add-book");
-btnAddBook.addEventListener("click", () => {
-	modalToAddBook.style.display = "block";
-	wrapper.classList.add("blur-bcg");
-});
+//function to open modal and blur bcg 
+function openModal(){
+    modalToAddBook.style.display = 'block'
+    wrapper.classList.add("blur-bcg");
+}
+btnAddBook.addEventListener("click", openModal);
 
 //Modal close btn fucntions
 btnCloseModal.addEventListener("click", closeModal);
@@ -75,7 +77,6 @@ function addNewBook() {
 btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
 
 //CREATE FUCNTION TO BUILD THE CARD
-
 function createBookCard(book) {
 	//grab cards container
 	const cardsContainer = document.querySelector(".cards-container");
@@ -126,7 +127,7 @@ function createBookCard(book) {
 	cardInfo.appendChild(readContainer);
 
     //refer to the fucntion and append to the main card 
-    const btnsShowWhenHover = createHoverBtns()
+    const btnsShowWhenHover = createHoverBtns(book)
     card.appendChild(btnsShowWhenHover)
 
 	//EVENT TO MAKE CARD HOVER DISPLAY THE BTN OF DELETE AND EDIT
@@ -140,14 +141,17 @@ function createBookCard(book) {
     })
 }
 
+
 //FUNCTION TO CREATE THE CARD THAT APPEAR WHEN CARD IS HOVER
-function createHoverBtns(){
+
+function createHoverBtns(book){
     //create elements
     const cardWhenHover = document.createElement('div')
-    const editBtn = document.createElement('button')
-    const deleteBtn = document.createElement('button')
+    const editBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
     const editImg = document.createElement('img')
     const deleteImg = document.createElement('img')
+
 
     //assign classes
     cardWhenHover.classList.add('card-when-hover')
@@ -169,7 +173,18 @@ function createHoverBtns(){
     //set inicial display of cardhover
     cardWhenHover.style.display = 'none'
 
+    editBtn.addEventListener("click", () => {
+
+	openModal();
+
+	// FILL INPUT FIELDS WITH BOOK INFORMATION
+	titleInput.value = book.title;
+	authorInput.value = book.author;
+	pagesInput.value = book.pages;
+	readOrNotInput.checked = book.isRead;
+	});
+
     return cardWhenHover
 }
 
-//FUCNTION TO BLUR CARD WHEN MOUSE ENTER 
+
