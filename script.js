@@ -1,24 +1,27 @@
-
-const modalToAddBook = document.getElementById('wrapper')
-const btnCloseModal = document.querySelector('.close-book-form')
-const btnSubmitBook = document.querySelector(".submit-btn")
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const readOrNotInput = document.getElementById("readornot");
+const modalToAddBook = document.getElementById("wrapper");
+const btnCloseModal = document.querySelector(".close-book-form");
+const btnSubmitBook = document.querySelector(".submit-btn");
 
 //GETTING THE WEBPAGE WRAPPER
-const wrapper = document.querySelector('.wrapper')
+const wrapper = document.querySelector(".wrapper");
 
 //MAKE THE ADD BOOK BTN OPEN MODAL
-const btnAddBook = document.querySelector('.btn-add-book')
-btnAddBook.addEventListener('click', () => {
-    modalToAddBook.style.display = 'block'
-    wrapper.classList.add('blur-bcg')
-})
+const btnAddBook = document.querySelector(".btn-add-book");
+btnAddBook.addEventListener("click", () => {
+	modalToAddBook.style.display = "block";
+	wrapper.classList.add("blur-bcg");
+});
 
 //Modal close btn fucntions
-btnCloseModal.addEventListener('click', closeModal)
+btnCloseModal.addEventListener("click", closeModal);
 
-//FUCNTION TO CLOSE MODAL FOR BETTER MULTIPLE USAGE 
-function closeModal(){
-    modalToAddBook.style.display = "none";
+//FUCNTION TO CLOSE MODAL FOR BETTER MULTIPLE USAGE
+function closeModal() {
+	modalToAddBook.style.display = "none";
 	wrapper.classList.remove("blur-bcg");
 }
 
@@ -37,32 +40,43 @@ class Book {
 	}
 }
 
-
-const myLibrary = []
-
+const myLibrary = [];
 
 //FUNCTION TO GET THE VALUES FROM THE INPUTS
 function getBookInfo() {
-    const title = document.getElementById("title").value;
-	const author = document.getElementById("author").value;
-	const pagesNumber = document.getElementById("pages").value;
-	const isRead = document.getElementById("readornot").checked;
-    return new Book(title, author, pagesNumber, isRead)
+    const title = titleInput.value;
+	const author = authorInput.value;
+	const pagesNumber = pagesInput.value;
+	const isRead = readOrNotInput.checked;
+	return new Book(title, author, pagesNumber, isRead);
+	
 }
 
-function addNewBook(){
-    const newBook = getBookInfo()
-    myLibrary.push(newBook)
-
-    closeModal()
-    createBookCard(newBook)
+//FUNC TO CLEAR INPUT
+function clearInputAfterSubmit(){
+    titleInput.value = "";
+	authorInput.value = "";
+	pagesInput.value = "";
+	readOrNotInput.checked = false;
 }
 
-btnSubmitBook.addEventListener('click', addNewBook, createBookCard)
+
+//FCUNTION THAT WILL STORE INFO AND CALL THE FCUNTION TO CREATE CARD
+function addNewBook() {
+	const newBook = getBookInfo();
+	myLibrary.push(newBook);
+
+	closeModal();
+	createBookCard(newBook);
+    clearInputAfterSubmit()
+}
+
+//function to clean inputs when submited new book
+btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
 
 //CREATE FUCNTION TO BUILD THE CARD
 
-function createBookCard(book){
+function createBookCard(book) {
 	//grab cards container
 	const cardsContainer = document.querySelector(".cards-container");
 	//create elements of card
@@ -92,9 +106,9 @@ function createBookCard(book){
 	noneReadIcon.alt = "";
 
 	//Tex content from book object
-	title.textContent = book.title
-	author.textContent = `By ${book.author}`
-	pages.textContent = `${book.pages} pages`
+	title.textContent = book.title;
+	author.textContent = `By ${book.author}`;
+	pages.textContent = `${book.pages} pages`;
 
 	// Determine which icon to display based on isRead property
 	if (book.isRead) {
@@ -106,8 +120,56 @@ function createBookCard(book){
 	//APPEDING ELEMENTS
 	cardsContainer.appendChild(card);
 	card.appendChild(cardInfo);
-	card.appendChild(readContainer);
 	cardInfo.appendChild(title);
 	cardInfo.appendChild(author);
 	cardInfo.appendChild(pages);
+	cardInfo.appendChild(readContainer);
+
+    //refer to the fucntion and append to the main card 
+    const btnsShowWhenHover = createHoverBtns()
+    card.appendChild(btnsShowWhenHover)
+
+	//EVENT TO MAKE CARD HOVER DISPLAY THE BTN OF DELETE AND EDIT
+	card.addEventListener("mouseenter", () => {
+        btnsShowWhenHover.style.display = 'block'
+        cardInfo.classList.add('blur-card')
+    });
+    card.addEventListener('mouseleave', () => {
+        btnsShowWhenHover.style.display = 'none'
+        cardInfo.classList.remove('blur-card')
+    })
 }
+
+//FUNCTION TO CREATE THE CARD THAT APPEAR WHEN CARD IS HOVER
+function createHoverBtns(){
+    //create elements
+    const cardWhenHover = document.createElement('div')
+    const editBtn = document.createElement('button')
+    const deleteBtn = document.createElement('button')
+    const editImg = document.createElement('img')
+    const deleteImg = document.createElement('img')
+
+    //assign classes
+    cardWhenHover.classList.add('card-when-hover')
+    editBtn.classList.add('edit-btn-hover')
+    deleteBtn.classList.add('delete-btn-hover')
+
+    //assign img assets
+    editImg.src = "assets/final-edit-btn-img.png"
+    editImg.alt = 'pen edit image'
+    deleteImg.src = "assets/final-delete-btn-img.png";
+    deleteImg.alt = 'trash icon'
+
+    //append elements
+    cardWhenHover.appendChild(editBtn)
+    cardWhenHover.appendChild(deleteBtn)
+    editBtn.appendChild(editImg)
+    deleteBtn.appendChild(deleteImg)
+
+    //set inicial display of cardhover
+    cardWhenHover.style.display = 'none'
+
+    return cardWhenHover
+}
+
+//FUCNTION TO BLUR CARD WHEN MOUSE ENTER 
