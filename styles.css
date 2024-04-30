@@ -161,11 +161,10 @@ body {
 
 /* *CARD WHEN HOVER */
 /* bluring the card when appear the options to delete and edit */
-@keyframes blurcard{
-    100% {filter: blur(1.5px) opacity(80%);}
-}
+
 .card-when-hover{
     position: absolute;
+    top: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,8 +175,8 @@ body {
 .edit-btn-hover,.delete-btn-hover{
     border: none;
     border-radius: 1rem;
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     cursor: pointer;
 }
 .edit-btn-hover{
@@ -187,12 +186,6 @@ body {
 .delete-btn-hover{
     background-color: var(--deleteBtnBgc-);
 }
-.card-info-enable:hover{
-    animation-name: blurcard;
-    animation-fill-mode: forwards;
-    animation-duration: 300ms
-}
-
 
 /* *FOOTER */
 .footer-container {
@@ -258,6 +251,7 @@ body {
 	-webkit-box-shadow: 2px 4px 4px 2px var(--box-shadow-color-);
 	-moz-box-shadow: 2px 4px 4px 2px var(--box-shadow-color-);
 	box-shadow: 2px 4px 4px 2px var(--box-shadow-color-);
+    outline: none;
 }
 
 .read-check-box{
@@ -333,9 +327,16 @@ body {
 }
 
 /* ! things for js usage */
-@keyframes blur-background{
-    100% {filter: blur(3px) opacity(85%);}
+@keyframes blur-background-body{
+    100% {filter: blur(2px) opacity(80%);}
 }
 .blur-bcg{
-    animation: blur-background 0.5s forwards;
+    animation: blur-background-body 0.5s forwards;
+}
+
+@keyframes blur-background-card{
+    100% {filter: blur(2px) opacity(80%);}
+}
+.blur-card{
+    animation: blur-background-card 0.3s forwards;
 }
