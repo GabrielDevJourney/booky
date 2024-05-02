@@ -206,6 +206,7 @@ body {
     position: absolute;
     top: 30%;
     left: 41%;
+    background-color: var(--pageBgc-);
 }
 .form-book {
 	border: 2px solid var(--navBar-cardsShadow-);
