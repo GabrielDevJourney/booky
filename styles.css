@@ -206,10 +206,10 @@ body {
     position: absolute;
     top: 30%;
     left: 41%;
-    background-color: var(--pageBgc-);
 }
 .form-book {
 	border: 2px solid var(--navBar-cardsShadow-);
+    background-color: var(--pageBgc-);
 	display: flex;
 	flex-direction: column;
 	margin: 1rem;
