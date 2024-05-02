@@ -5,6 +5,7 @@ const readOrNotInput = document.getElementById("readornot");
 const modalToAddBook = document.getElementById("wrapper");
 const btnCloseModal = document.querySelector(".close-book-form");
 const btnSubmitBook = document.querySelector(".submit-btn");
+const headerText = document.querySelector(".modal-header-text")
 
 //GETTING THE WEBPAGE WRAPPER
 const wrapper = document.querySelector(".wrapper");
@@ -16,16 +17,16 @@ function openModal(){
     modalToAddBook.style.display = 'block'
     wrapper.classList.add("blur-bcg");
 }
-btnAddBook.addEventListener("click", openModal);
-
-//Modal close btn fucntions
-btnCloseModal.addEventListener("click", closeModal);
-
 //FUCNTION TO CLOSE MODAL FOR BETTER MULTIPLE USAGE
 function closeModal() {
 	modalToAddBook.style.display = "none";
 	wrapper.classList.remove("blur-bcg");
 }
+btnAddBook.addEventListener("click", openModal);
+
+//Modal close btn fucntions
+btnCloseModal.addEventListener("click", closeModal);
+
 
 //*Data structures
 class Book {
@@ -33,18 +34,20 @@ class Book {
 		title = "Unknown",
 		author = "Unknown",
 		pages = "0",
-		isRead = false
+		isRead = false,
+        id = Math.floor(Math.random() * 100000)
 	) {
 		this.title = title;
 		this.author = author;
 		this.pages = pages;
 		this.isRead = isRead;
+        this.id = id
 	}
 }
 
 const myLibrary = [];
 
-//FUNCTION TO GET THE VALUES FROM THE INPUTS
+//FUNCTION TO GET THE VALUES FROM THE INPUTS then call to create library book object
 function getBookInfo() {
     const title = titleInput.value;
 	const author = authorInput.value;
@@ -73,8 +76,6 @@ function addNewBook() {
     clearInputAfterSubmit()
 }
 
-//function to clean inputs when submited new book
-btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
 
 //CREATE FUCNTION TO BUILD THE CARD
 function createBookCard(book) {
@@ -99,6 +100,9 @@ function createBookCard(book) {
 	readContainer.classList.add("read-or-nonread-icons-container");
 	isReadIcon.classList.add("card-icon", "is-read");
 	noneReadIcon.classList.add("card-icon", "none-read");
+
+    //create data id to identify each card
+    card.setAttribute("data-id", book.id);
 
 	//Adding icon sources
 	isReadIcon.src = "assets/readcheck stats.png";
@@ -176,7 +180,8 @@ function createHoverBtns(book){
     editBtn.addEventListener("click", () => {
 
 	openModal();
-    btnSubmitBook.textContent = 'Edit Book'
+    btnSubmitBook.value = 'Edit Book'
+	headerText.textContent = "Edit Book"
 
 	// FILL INPUT FIELDS WITH BOOK INFORMATION
 	titleInput.value = book.title;
@@ -188,4 +193,46 @@ function createHoverBtns(book){
     return cardWhenHover
 }
 
+//function to clean inputs when submited new book
+btnSubmitBook.addEventListener("click", function(e) {
+    if(headerText.textContent === 'Edit Book'){
+        const id = e.target.id
+        const editBook = myLibrary.find((book) => book.id === id)
+        if(editBook){
+            editBook.title = titleInput.value;
+			editBook.author = authorInput.value;
+			editBook.pages = pagesInput.value;
+			editBook.isRead = readOrNotInput.checked;   
+            updateUINewInfo(editBook)
+        }
+    }else{
+        addNewBook();
+    }
+    closeModal()
+});
 
+// Function to update the UI with edited book information
+function updateUINewInfo(book) {
+    console.log("Updating UI with edited book:", book);
+    const cardToUpdate = document.querySelector(`.card[data-id="${book.id}"]`);
+    console.log("Card to update:", cardToUpdate);
+    if (cardToUpdate) {
+        const titleElement = cardToUpdate.querySelector('.card-header');
+        const authorElement = cardToUpdate.querySelector('.card-author');
+        const pagesElement = cardToUpdate.querySelector('.card-pages');
+        const readIcon = cardToUpdate.querySelector('.is-read');
+        const nonReadIcon = cardToUpdate.querySelector('.none-read');
+
+        titleElement.textContent = book.title;
+        authorElement.textContent = `By ${book.author}`;
+        pagesElement.textContent = `${book.pages} pages`;
+
+        if (book.isRead) {
+            readIcon.style.display = 'block'; // Show the read icon
+            nonReadIcon.style.display = 'none'; // Hide the non-read icon
+        } else {
+            readIcon.style.display = 'none'; // Hide the read icon
+            nonReadIcon.style.display = 'block'; // Show the non-read
+        }
+    }
+}
