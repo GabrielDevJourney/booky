@@ -21,7 +21,7 @@ function closeModal() {
 	modalToAddBook.style.display = "none";
 	wrapper.classList.remove("blur-bcg");
 }
-btnAddBook.addEventListener("click", openModal);
+btnAddBook.addEventListener("click", openModal, clearInputAfterSubmit);
 
 //Modal close btn fucntions
 btnCloseModal.addEventListener("click", closeModal);
@@ -144,46 +144,55 @@ function createBookCard(book) {
 
 function createHoverBtns(book) {
 	//create elements
+    const cardHoverWrapper = document.createElement('div')
 	const cardWhenHover = document.createElement("div");
-	const editBtn = document.createElement("button");
+	const haveReadContainer = document.createElement("div");
+	const haveReadBtn = document.createElement("button");
+	const haventReadBtn = document.createElement("button");
+	const deleteContainer = document.createElement("div");
 	const deleteBtn = document.createElement("button");
-	const editImg = document.createElement("img");
+	const yesHaveReadImg = document.createElement("img");
+	const noReadImg = document.createElement("img");
 	const deleteImg = document.createElement("img");
 
 	//assign classes
+    cardHoverWrapper.classList.add('hover-wrapper')
+	haveReadContainer.classList.add("read-icons-container");
+	deleteContainer.classList.add("delete-icon-container");
 	cardWhenHover.classList.add("card-when-hover");
-	editBtn.classList.add("edit-btn-hover");
+	haveReadBtn.classList.add("edit-btn-hover");
+	haventReadBtn.classList.add("edit-btn-hover");
 	deleteBtn.classList.add("delete-btn-hover");
 
 	//assign img assets
-	editImg.src = "assets/final-edit-btn-img.png";
-	editImg.alt = "pen edit image";
+	yesHaveReadImg.src = "assets/hover-read.png";
+	noReadImg.src = "assets/hover-no-read.png";
 	deleteImg.src = "assets/final-delete-btn-img.png";
 	deleteImg.alt = "trash icon";
 
 	//append elements
-	cardWhenHover.appendChild(editBtn);
-	cardWhenHover.appendChild(deleteBtn);
-	editBtn.appendChild(editImg);
+    cardHoverWrapper.appendChild(cardWhenHover)
+	cardWhenHover.appendChild(haveReadContainer);
+	cardWhenHover.appendChild(deleteContainer);
+	haveReadContainer.appendChild(haveReadBtn);
+	haveReadContainer.appendChild(haventReadBtn);
+	deleteContainer.appendChild(deleteBtn);
+	haveReadBtn.appendChild(yesHaveReadImg);
+	haventReadBtn.appendChild(noReadImg);
 	deleteBtn.appendChild(deleteImg);
 
 	//set inicial display of cardhover
-	cardWhenHover.style.display = "none";
+	cardHoverWrapper.style.display = "block";
 
-	editBtn.addEventListener("click", () => {
-		openModal();
-		btnSubmitBook.value = "Edit Book";
-		headerText.textContent = "Edit Book";
+	if (book.isRead) {
+		haveReadBtn.style.display = "block";
+		haventReadBtn.style.display = "none";
+	} else {
+		haveReadBtn.style.display = "none";
+		haventReadBtn.style.display = "block";
+	}
 
-		// FILL INPUT FIELDS WITH BOOK INFORMATION
-		titleInput.value = book.title;
-		authorInput.value = book.author;
-		pagesInput.value = book.pages;
-		readOrNotInput.checked = book.isRead;
-	});
-
-	return cardWhenHover;
+	return cardHoverWrapper;
 }
 
-
-
+btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
