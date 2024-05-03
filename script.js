@@ -182,7 +182,7 @@ function createHoverBtns(book) {
 	deleteBtn.appendChild(deleteImg);
 
 	//set inicial display of cardhover
-	cardHoverWrapper.style.display = "block";
+	cardHoverWrapper.style.display = "none";
 
 	if (book.isRead) {
 		haveReadBtn.style.display = "block";

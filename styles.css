@@ -161,16 +161,21 @@ body {
 
 /* *CARD WHEN HOVER */
 /* bluring the card when appear the options to delete and edit */
-
-.card-when-hover{
+.hover-wrapper{
     position: absolute;
-    top: 40%;
+    top: 30%;
+}
+.card-when-hover{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 250px;
     height: 210px;
     text-align: center;
+}
+.read-icons-container, .delete-icon-container{
+    width: 4rem;
+    height: 4rem;
 }
 .edit-btn-hover,.delete-btn-hover{
     border: none;
