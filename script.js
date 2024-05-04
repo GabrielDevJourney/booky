@@ -73,6 +73,8 @@ function addNewBook() {
 }
 
 //CREATE FUCNTION TO BUILD THE CARD
+//declare in the whole scope to be able to access them in other func
+
 function createBookCard(book) {
 	//grab cards container
 	const cardsContainer = document.querySelector(".cards-container");
@@ -126,7 +128,13 @@ function createBookCard(book) {
 	cardInfo.appendChild(readContainer);
 
 	//refer to the fucntion and append to the main card
-	const btnsShowWhenHover = createHoverBtns(book);
+	const btnsShowWhenHover = createHoverBtns(
+		book,
+		card,
+		readContainer,
+		isReadIcon,
+		noneReadIcon
+	);
 	card.appendChild(btnsShowWhenHover);
 
 	//EVENT TO MAKE CARD HOVER DISPLAY THE BTN OF DELETE AND EDIT
@@ -139,12 +147,12 @@ function createBookCard(book) {
 		cardInfo.classList.remove("blur-card");
 	});
 
-    toggleBookReadStatus()
+	return card;
 }
 
 //FUNCTION TO CREATE THE CARD THAT APPEAR WHEN CARD IS HOVER
 
-function createHoverBtns(book) {
+function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 	const cardHoverWrapper = document.createElement("div");
 	const cardWhenHover = document.createElement("div");
 	const haveReadContainer = document.createElement("div");
@@ -159,6 +167,7 @@ function createHoverBtns(book) {
 	deleteContainer.classList.add("delete-icon-container");
 	cardWhenHover.classList.add("card-when-hover");
 	toggleReadBtn.classList.add("edit-btn-hover");
+	toggleReadImg.classList.add("read-img");
 	deleteBtn.classList.add("delete-btn-hover");
 
 	deleteImg.src = "assets/final-delete-btn-img.png";
@@ -179,16 +188,35 @@ function createHoverBtns(book) {
 	deleteBtn.appendChild(deleteImg);
 
 	cardHoverWrapper.style.display = "none";
+	toggleReadBtn.addEventListener("click", () => {
+		if (book.isRead) {
+			toggleReadImg.src = "assets/hover-no-read.png";
+			readContainer.appendChild(noneReadIcon);
+			readContainer.removeChild(isReadIcon);
+			book.isRead = false;
+		} else {
+			toggleReadImg.src = "assets/hover-read.png";
+			readContainer.appendChild(isReadIcon);
+			readContainer.removeChild(noneReadIcon);
+			book.isRead = true;
+		}
+	});
 
+	deleteBtn.addEventListener("click", () => {
+		const cardId = card.getAttribute("data-id");
+		deleteCard(cardId);
+	});
 	return cardHoverWrapper;
 }
 
 btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
 
-//function to change icon on ui when hover btn is click
-/* 
-    i need to access card btn and the icons container
-    then access the btn that will make the changes
-    then if book is read change both btn and card icon to read
-    else change those to not read img
-*/
+function deleteCard(cardId) {
+	const cardToRemove = document.querySelector(`[data-id="${cardId}"]`);
+	cardToRemove.remove();
+
+	const indexToDelete = myLibrary.find((book) => book.id === cardId);
+	if (indexToDelete !== -1) {
+		myLibrary.splice(indexToDelete, 1);
+	}
+}
