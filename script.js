@@ -205,10 +205,8 @@ function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 	});
 
 	deleteBtn.addEventListener("click", () => {
-		const cardId = card.getAttribute("data-id");
-		const bookToDelete = myLibrary.find(
-			(book) => book.id === parseInt(cardId)
-		);
+		const cardId = parseInt(card.getAttribute("data-id"));
+		const bookToDelete = myLibrary.find((book) => book.id === cardId);
 		deleteCard(bookToDelete);
 	});
 
