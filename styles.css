@@ -121,6 +121,7 @@ body {
 
 /* *SINGLE BOOK CARD STYLING */
 .card {
+    position: relative;
 	border: 2px solid var(--navBar-cardsShadow-);
 	margin: 1rem;
 	width: 250px;
@@ -161,9 +162,9 @@ body {
 
 /* *CARD WHEN HOVER */
 /* bluring the card when appear the options to delete and edit */
-.hover-wrapper{
+.hover-wrapper, .card-info-enable{
     position: absolute;
-    top: 30%;
+    
 }
 .card-when-hover{
     display: flex;
