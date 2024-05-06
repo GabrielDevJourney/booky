@@ -201,7 +201,8 @@ function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 			readContainer.removeChild(noneReadIcon);
 			book.isRead = true;
 		}
-		updateStats();
+        updateStatsWhenChaingReadStatus(book)
+		updateStatsDisplay()
 	});
 
 	deleteBtn.addEventListener("click", () => {
@@ -232,9 +233,9 @@ function deleteCard(book) {
 }
 btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
 
-let pagesCount = 0;
 let readCount = 0;
 let noReadCount = 0;
+let pagesCount = 0;
 let TotalbookCount = 0;
 
 //where it will be displayed
@@ -258,4 +259,19 @@ function updateStatsWhenCardCreated(book) {
 	}
 	TotalbookCount++;
 	updateStatsDisplay();
+}
+function ensureNonNegative(value) {
+	return Math.max(0, value);
+}
+
+function updateStatsWhenChaingReadStatus(book){
+    if (book.isRead) {
+        readCount ++
+        noReadCount --
+        pagesCount -= parseInt(book.pages)
+    }else{
+        readCount --
+        noReadCount ++
+        pagesCount += parseInt(book.pages)
+    }
 }
