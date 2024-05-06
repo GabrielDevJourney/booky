@@ -69,6 +69,7 @@ function addNewBook() {
 
 	closeModal();
 	createBookCard(newBook);
+	updateStatsWhenCardCreated(newBook);
 	clearInputAfterSubmit();
 }
 
@@ -200,23 +201,63 @@ function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 			readContainer.removeChild(noneReadIcon);
 			book.isRead = true;
 		}
+		updateStats();
 	});
 
 	deleteBtn.addEventListener("click", () => {
 		const cardId = card.getAttribute("data-id");
-		deleteCard(cardId);
+		const bookToDelete = myLibrary.find(
+			(book) => book.id === parseInt(cardId)
+		);
+		deleteCard(bookToDelete);
 	});
+
 	return cardHoverWrapper;
 }
 
-btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
-
-function deleteCard(cardId) {
-	const cardToRemove = document.querySelector(`[data-id="${cardId}"]`);
+function deleteCard(book) {
+	const cardToRemove = document.querySelector(`[data-id="${book.id}"]`);
 	cardToRemove.remove();
 
-	const indexToDelete = myLibrary.find((book) => book.id === cardId);
+	const indexToDelete = myLibrary.findIndex((item) => item.id === book.id);
 	if (indexToDelete !== -1) {
 		myLibrary.splice(indexToDelete, 1);
 	}
+	if (book.isRead) {
+		readCount--;
+		pagesCount -= parseInt(book.pages);
+	} else {
+		noReadCount--;
+	}
+	TotalbookCount--;
+	updateStatsDisplay();
+}
+btnSubmitBook.addEventListener("click", addNewBook, createBookCard);
+
+let pagesCount = 0;
+let readCount = 0;
+let noReadCount = 0;
+let TotalbookCount = 0;
+
+//where it will be displayed
+function updateStatsDisplay() {
+	const bookStatsDisplay = document.querySelector(".stack-count");
+	const bookPageStatsDisplay = document.querySelector(".pages-count");
+	const booksReadDisplay = document.querySelector(".read-count");
+	const booksNotReadDisplay = document.querySelector(".non-read-count");
+	bookStatsDisplay.textContent = TotalbookCount;
+	bookPageStatsDisplay.textContent = pagesCount;
+	booksReadDisplay.textContent = readCount;
+	booksNotReadDisplay.textContent = noReadCount;
+}
+
+function updateStatsWhenCardCreated(book) {
+	if (book.isRead) {
+		readCount++;
+		pagesCount += parseInt(book.pages);
+	} else {
+		noReadCount++;
+	}
+	TotalbookCount++;
+	updateStatsDisplay();
 }
