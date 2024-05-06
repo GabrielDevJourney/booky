@@ -268,10 +268,10 @@ function updateStatsWhenChaingReadStatus(book){
     if (book.isRead) {
         readCount ++
         noReadCount --
-        pagesCount -= parseInt(book.pages)
+        pagesCount += parseInt(book.pages)
     }else{
         readCount --
         noReadCount ++
-        pagesCount += parseInt(book.pages)
+        pagesCount -= parseInt(book.pages)
     }
 }
