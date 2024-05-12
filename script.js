@@ -43,7 +43,7 @@ class Book {
 	}
 }
 
-const myLibrary = [];
+let myLibrary = [];
 
 //FUNCTION TO GET THE VALUES FROM THE INPUTS then call to create library book object
 function getBookInfo() {
@@ -67,6 +67,7 @@ function addNewBook() {
 	const newBook = getBookInfo();
 	myLibrary.push(newBook);
 
+    saveLibraryInLocalStorage()
 	closeModal();
 	createBookCard(newBook);
 	updateStatsWhenCardCreated(newBook);
@@ -221,6 +222,7 @@ function deleteCard(book) {
 	const indexToDelete = myLibrary.findIndex((item) => item.id === book.id);
 	if (indexToDelete !== -1) {
 		myLibrary.splice(indexToDelete, 1);
+        saveLibraryInLocalStorage()
 	}
 	if (book.isRead) {
 		readCount--;
@@ -275,3 +277,24 @@ function updateStatsWhenChaingReadStatus(book){
         pagesCount -= parseInt(book.pages)
     }
 }
+
+//func to save mylibrary array locally
+function saveLibraryInLocalStorage() {
+	localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+//grab string json previous stored and convert back to array
+//and create everything back based on the books previous stored
+function loadLibraryFromLocalStorage() {
+	const storedLibrary = localStorage.getItem("myLibrary");
+	if (storedLibrary) {
+		myLibrary = JSON.parse(storedLibrary);
+		myLibrary.forEach((book) => {
+			createBookCard(book);
+			updateStatsWhenCardCreated(book);
+		});
+		updateStatsDisplay();
+	}
+}
+
+window.addEventListener("load", loadLibraryFromLocalStorage);
