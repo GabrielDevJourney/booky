@@ -52,7 +52,7 @@ While Booky achieves its basic functionality, there are several areas for improv
 - **Performance Optimization**: Optimize code and performance to improve load times and responsiveness, especially on slower devices.
 
 ## 📘 Usage
-To start using Booky, simply click the [link](#https://gabrieldevjourney.github.io/booky/) to access the web app. From there, you can add books to your library, update their statuses, and enjoy keeping track of your reading journey.
+To start using Booky, simply click the [link](https://gabrieldevjourney.github.io/booky/) to access the web app. From there, you can add books to your library, update their statuses, and enjoy keeping track of your reading journey.
 
 ## 🔗 Live Demo
-A live demo of Booky is available [here](#https://gabrieldevjourney.github.io/booky/).
+A live demo of Booky is available [here](https://gabrieldevjourney.github.io/booky/).
