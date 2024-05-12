@@ -1,3 +1,4 @@
+//get input fields and buttons
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
@@ -11,6 +12,7 @@ const wrapper = document.querySelector(".wrapper");
 
 //MAKE THE ADD BOOK BTN OPEN MODAL
 const btnAddBook = document.querySelector(".btn-add-book");
+
 //function to open modal and blur bcg
 function openModal() {
 	modalToAddBook.style.display = "block";
@@ -21,6 +23,7 @@ function closeModal() {
 	modalToAddBook.style.display = "none";
 	wrapper.classList.remove("blur-bcg");
 }
+//open modal when add book is clicked
 btnAddBook.addEventListener("click", openModal, clearInputAfterSubmit);
 
 //Modal close btn fucntions
@@ -215,15 +218,19 @@ function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 	return cardHoverWrapper;
 }
 
+//delete book from library and update stats
 function deleteCard(book) {
+    //remove from dom
 	const cardToRemove = document.querySelector(`[data-id="${book.id}"]`);
 	cardToRemove.remove();
 
+    //remove from library array
 	const indexToDelete = myLibrary.findIndex((item) => item.id === book.id);
 	if (indexToDelete !== -1) {
 		myLibrary.splice(indexToDelete, 1);
         saveLibraryInLocalStorage()
 	}
+    //update stats
 	if (book.isRead) {
 		readCount--;
 		pagesCount -= parseInt(book.pages);
@@ -252,6 +259,7 @@ function updateStatsDisplay() {
 	booksNotReadDisplay.textContent = noReadCount;
 }
 
+// Function to update statistics display when a book card is created
 function updateStatsWhenCardCreated(book) {
 	if (book.isRead) {
 		readCount++;
@@ -262,10 +270,13 @@ function updateStatsWhenCardCreated(book) {
 	TotalbookCount++;
 	updateStatsDisplay();
 }
+
+
 function ensureNonNegative(value) {
 	return Math.max(0, value);
 }
 
+// Function to update statistics when changing read status of a book
 function updateStatsWhenChaingReadStatus(book){
     if (book.isRead) {
         readCount ++
@@ -296,5 +307,5 @@ function loadLibraryFromLocalStorage() {
 		updateStatsDisplay();
 	}
 }
-
+//load library from local storage
 window.addEventListener("load", loadLibraryFromLocalStorage);
