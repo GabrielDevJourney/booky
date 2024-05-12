@@ -3,13 +3,13 @@
 Booky is a web application designed for keeping track of the books you have read and those you're planning to read. With Booky, you can easily manage your personal library, update the status of your books, and monitor your reading progress.
 
 ## 📋 Table of Contents
-- 👋 Introduction#-introduction
-- 💻 Technologies#-technologies
-- ✨ Features#-features
-- 🛠️ Process#-process
-- 🎓 What I Learned#-what-i-learned
-- 🚀 How It Could Be Improved#-how-it-could-be-improved
-- 📘 Usage#-usage
+- 👋 Introduction
+- 💻 Technologies
+- ✨ Features
+- 🛠️ Process
+- 🎓 What I Learned
+- 🚀 How It Could Be Improved
+- 📘 Usage
 - 🔗 Live Demo
 
 ## 👋 Introduction
