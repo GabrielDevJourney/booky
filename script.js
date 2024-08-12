@@ -38,23 +38,165 @@ class Book {
 		isRead = false,
 		id = Math.floor(Math.random() * 100000)
 	) {
-		this.title = title;
-		this.author = author;
-		this.pages = pages;
-		this.isRead = isRead;
-		this.id = id;
+		this._title = title;
+		this._author = author;
+		this._pages = Number(pages);
+		this._isRead = isRead;
+		this._id = id;
+	}
+	get title() {
+		return this._title;
+	}
+	get author() {
+		return this._author;
+	}
+	get pages() {
+		return this._pages;
+	}
+	get isRead() {
+		return this._isRead;
+	}
+	get id() {
+		return this._id;
+	}
+	toggleRead() {
+		this._isRead = !this._isRead;
+	}
+	getInfo() {
+		return `${this.title} by ${this.author}, ${this.pages} pages, ${
+			this.isRead ? "Read" : "Not Read Yet"
+		}`;
+	}
+
+	set title(newTittle) {
+		if (newTittle && typeof newTittle === "string") {
+			this._title = newTittle;
+		} else {
+			throw new Error("Title must be a non-empty string");
+		}
+	}
+
+	set author(newAuthor) {
+		if (newAuthor && typeof newAuthor === "string") {
+			this._author = newAuthor;
+		} else {
+			throw new Error("Author must be a non-empty string");
+		}
+	}
+
+	set pages(newPages) {
+		const pageCount = Number(newPages);
+
+		if (Number.isInteger(pageCount) && pageCount > 0) {
+			if (pageCount <= 2000) {
+				this._pages = pagesCount;
+			} else {
+				throw new Error(
+					"Page count seems unreasonably high. Please check the input."
+				);
+			}
+		} else {
+			throw new Error("Pages must be an integer number.");
+		}
+	}
+
+	set isRead(newIsReadState) {
+		this._isRead = Boolean(newIsReadState);
+	}
+
+	toJSON() {
+		return {
+			title: this.title,
+			author: this.author,
+			pages: this.pages,
+			isRead: this.isRead,
+			id: this.id,
+		};
 	}
 }
 
-let myLibrary = [];
-
-//FUNCTION TO GET THE VALUES FROM THE INPUTS then call to create library book object
-function getBookInfo() {
+function createNewBookFromInput() {
 	const title = titleInput.value;
 	const author = authorInput.value;
 	const pagesNumber = pagesInput.value;
 	const isRead = readOrNotInput.checked;
 	return new Book(title, author, pagesNumber, isRead);
+}
+
+class Library {
+	constructor() {
+		this._myLibrary = [];
+	}
+
+	bookExists(bookId) {
+		return this._myLibrary.some((book) => book.id === bookId);
+	}
+
+	addBook(book) {
+		if (book instanceof Book) {
+			this._myLibrary.push(book);
+		} else {
+			throw new Error("You can only add Book ojects to the library");
+		}
+	}
+
+	removeBook(bookId) {
+		const indexToDelete = this._myLibrary.findIndex(
+			(item) => item.id === bookId
+		);
+		if (indexToDelete !== -1) {
+			this._myLibrary.splice(indexToDelete, 1);
+			return true;
+		}
+		return false;
+	}
+
+	getBookInfo(bookId) {
+		const book = this._myLibrary.find((book) => book.id === bookId);
+		return book ? book.getInfo() : "Book not found";
+	}
+
+	getTotalBooks() {
+		return this._myLibrary.length;
+	}
+
+	getReadBooks() {
+		return this._myLibrary.filter(
+			(book) => book instanceof Book && book.isRead
+		).length;
+	}
+
+	getUnreadBooks() {
+		return this._myLibrary.filter(
+			(book) => book instanceof Book && !book.isRead
+		).length;
+	}
+	getTotalPagesRead() {
+		return this._myLibrary.reduce((total, book) => {
+			if (book instanceof Book && book.isRead) {
+				return total + parseInt(book.pages, 10);
+			}
+			return total;
+		}, 0);
+	}
+	saveLibraryInLocalStorage() {
+		localStorage.setItem("myLibrary", JSON.stringify(this._myLibrary));
+	}
+	loadLibraryFromLocalStorage() {
+		const storedLibrary = localStorage.getItem("myLibrary");
+		if (storedLibrary) {
+			const parsedLibrary = JSON.parse(storedLibrary);
+			this._myLibrary = parsedLibrary.map(bookData => new Book(
+                bookData.title,
+                bookData.author,
+                bookData.pages,
+                bookData.isRead,
+                bookData.id
+            ))
+            return true
+		}
+        return false
+	}
 }
 
 //FUNC TO CLEAR INPUT
@@ -70,7 +212,7 @@ function addNewBook() {
 	const newBook = getBookInfo();
 	myLibrary.push(newBook);
 
-    saveLibraryInLocalStorage()
+	saveLibraryInLocalStorage();
 	closeModal();
 	createBookCard(newBook);
 	updateStatsWhenCardCreated(newBook);
@@ -205,8 +347,8 @@ function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 			readContainer.removeChild(noneReadIcon);
 			book.isRead = true;
 		}
-        updateStatsWhenChaingReadStatus(book)
-		updateStatsDisplay()
+		updateStatsWhenChaingReadStatus(book);
+		updateStatsDisplay();
 	});
 
 	deleteBtn.addEventListener("click", () => {
@@ -220,17 +362,17 @@ function createHoverBtns(book, card, readContainer, isReadIcon, noneReadIcon) {
 
 //delete book from library and update stats
 function deleteCard(book) {
-    //remove from dom
+	//remove from dom
 	const cardToRemove = document.querySelector(`[data-id="${book.id}"]`);
 	cardToRemove.remove();
 
-    //remove from library array
+	//remove from library array
 	const indexToDelete = myLibrary.findIndex((item) => item.id === book.id);
 	if (indexToDelete !== -1) {
 		myLibrary.splice(indexToDelete, 1);
-        saveLibraryInLocalStorage()
+		saveLibraryInLocalStorage();
 	}
-    //update stats
+	//update stats
 	if (book.isRead) {
 		readCount--;
 		pagesCount -= parseInt(book.pages);
@@ -271,41 +413,22 @@ function updateStatsWhenCardCreated(book) {
 	updateStatsDisplay();
 }
 
-
 function ensureNonNegative(value) {
 	return Math.max(0, value);
 }
 
 // Function to update statistics when changing read status of a book
-function updateStatsWhenChaingReadStatus(book){
-    if (book.isRead) {
-        readCount ++
-        noReadCount --
-        pagesCount += parseInt(book.pages)
-    }else{
-        readCount --
-        noReadCount ++
-        pagesCount -= parseInt(book.pages)
-    }
-}
-
-//func to save mylibrary array locally
-function saveLibraryInLocalStorage() {
-	localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-}
-
-//grab string json previous stored and convert back to array
-//and create everything back based on the books previous stored
-function loadLibraryFromLocalStorage() {
-	const storedLibrary = localStorage.getItem("myLibrary");
-	if (storedLibrary) {
-		myLibrary = JSON.parse(storedLibrary);
-		myLibrary.forEach((book) => {
-			createBookCard(book);
-			updateStatsWhenCardCreated(book);
-		});
-		updateStatsDisplay();
+function updateStatsWhenChaingReadStatus(book) {
+	if (book.isRead) {
+		readCount++;
+		noReadCount--;
+		pagesCount += parseInt(book.pages);
+	} else {
+		readCount--;
+		noReadCount++;
+		pagesCount -= parseInt(book.pages);
 	}
 }
+
 //load library from local storage
 window.addEventListener("load", loadLibraryFromLocalStorage);
