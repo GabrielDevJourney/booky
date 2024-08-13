@@ -1,20 +1,3 @@
-//function to open modal and blur bcg
-function openModal() {
-	modalToAddBook.style.display = "block";
-	wrapper.classList.add("blur-bcg");
-}
-//FUCNTION TO CLOSE MODAL FOR BETTER MULTIPLE USAGE
-function closeModal() {
-	modalToAddBook.style.display = "none";
-	wrapper.classList.remove("blur-bcg");
-}
-//open modal when add book is clicked
-btnAddBook.addEventListener("click", openModal, clearInputAfterSubmit);
-
-//Modal close btn fucntions
-btnCloseModal.addEventListener("click", closeModal);
-
-//*Data structures
 class Book {
 	constructor(
 		title = "Unknown",
@@ -127,6 +110,9 @@ class Library {
 		return false;
 	}
 
+    getBooks(){
+        return this._myLibrary
+    }
 	getBookInfo(bookId) {
 		const book = this._myLibrary.find((book) => book.id === bookId);
 		return book ? book.getInfo() : "Book not found";
@@ -189,6 +175,8 @@ class Ui {
 		this.authorInput = document.getElementById("author");
 		this.pagesInput = document.getElementById("pages");
 		this.readOrNotInput = document.getElementById("readornot");
+		this.btnAddBook = document.querySelector(".btn-add-book");
+		this.btnCloseModal = document.querySelector(".close-book-form");
 		this.modalToAddBook = document.querySelector(".form-wrapper");
 		this.btnCloseModal = document.querySelector(".close-book-form");
 		this.btnSubmitBook = document.querySelector(".submit-btn");
@@ -388,10 +376,15 @@ class Ui {
 		this.readOrNotInput.checked = false;
 	}
 
-    displayAllBooks(){
-        this.cardsContainer.innerHTML = ""; // Clear existing cards
+	displayAllBooks() {
+		this.cardsContainer.innerHTML = ""; // Clear existing cards
 		this.library.getBooks().forEach((book) => this.createBookCard(book));
 		this.updateStatsDisplay();
+	}
+    
+    init(){
+        this.library.loadLibraryFromLocalStorage()
+        this.displayAllBooks()
     }
 }
 
